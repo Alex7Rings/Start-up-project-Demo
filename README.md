@@ -12,7 +12,6 @@ ITS ще предоставя:
 
 ## 📸 Дизайн и Mockups
 ### 🖼 Home екран (Примерен изглед)
-![Home Screen]
 
 ![Screenshot 2025-03-07 124451](https://github.com/user-attachments/assets/cf1fd03d-ccda-40b0-b509-28bae06a628d)
 
