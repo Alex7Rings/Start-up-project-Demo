@@ -17,6 +17,7 @@ ITS ще предоставя:
 ![Screenshot 2025-03-07 124451](https://github.com/user-attachments/assets/cf1fd03d-ccda-40b0-b509-28bae06a628d)
 
 Предмети
+
 ![Screenshot 2025-03-12 120943](https://github.com/user-attachments/assets/91f27171-fdba-4182-ad62-f21c5fc304e2)
 
 
