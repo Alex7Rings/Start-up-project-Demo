@@ -11,7 +11,6 @@ def generate_h5p_json(question, correct_answer, wrong_answers, filename="quiz.js
         ] + [{"text": ans, "correct": False} for ans in wrong_answers]
     }
 
-    # Запазване в папката generated_h5p/
     os.makedirs("generated_h5p", exist_ok=True)
     file_path = os.path.join("generated_h5p", filename)
 
@@ -20,6 +19,5 @@ def generate_h5p_json(question, correct_answer, wrong_answers, filename="quiz.js
 
     print(f"✅ H5P JSON файлът е създаден: {file_path}")
 
-# Тест
 if __name__ == "__main__":
     generate_h5p_json("Каква е скоростта на светлината?", "300,000 km/s", ["150,000 km/s", "3,000 km/s"])
