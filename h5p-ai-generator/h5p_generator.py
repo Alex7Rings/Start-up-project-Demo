@@ -1,9 +1,8 @@
 import json
 import os
 
-def generate_h5p_json(question, correct_answer, wrong_answers, filename="quiz.json"):
-    """Генерира JSON файл във формат H5P"""
-    
+def generate_h5p_json(question, correct_answer, wrong_answers):
+    """Генерира H5P JSON файл за въпрос с отговори."""
     data = {
         "question": question,
         "answers": [
@@ -12,12 +11,9 @@ def generate_h5p_json(question, correct_answer, wrong_answers, filename="quiz.js
     }
 
     os.makedirs("generated_h5p", exist_ok=True)
-    file_path = os.path.join("generated_h5p", filename)
+    file_path = os.path.join("generated_h5p", "quiz.json")
 
     with open(file_path, "w", encoding="utf-8") as f:
         json.dump(data, f, indent=4, ensure_ascii=False)
 
-    print(f"✅ H5P JSON файлът е създаден: {file_path}")
-
-if __name__ == "__main__":
-    generate_h5p_json("Каква е скоростта на светлината?", "300,000 km/s", ["150,000 km/s", "3,000 km/s"])
+    return file_path
