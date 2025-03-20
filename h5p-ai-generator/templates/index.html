@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="bg">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>H5P AI Генератор</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>H5P AI Генератор</h1>
+
+        <!-- Форма за въвеждане на тема -->
+        <form method="POST">
+            <label for="topic">Въведи тема:</label>
+            <input type="text" id="topic" name="topic" required>
+            <button type="submit">🔍 Генерирай въпрос</button>
+        </form>
+
+        <!-- Показване на AI въпроса -->
+        {% if question %}
+        <form action="/generate" method="POST">
+            <h2>📌 Генериран въпрос:</h2>
+            <p>{{ question }}</p>
+            <input type="hidden" name="question" value="{{ question }}">
+
+            <label for="correct_answer">✅ Правилен отговор:</label>
+            <input type="text" id="correct_answer" name="correct_answer" required>
+
+            <label for="wrong_answers">❌ Грешни отговори (разделени със запетая):</label>
+            <input type="text" id="wrong_answers" name="wrong_answers" required>
+
+            <button type="submit">📥 Генерирай H5P JSON</button>
+        </form>
+        {% endif %}
+    </div>
+</body>
+</html>
