@@ -1,6 +1,6 @@
 import openai
 
-openai_client = openai.OpenAI()  # Create OpenAI client
+openai_client = openai.OpenAI()  
 
 def generate_question(topic):
     response = openai_client.chat.completions.create(
