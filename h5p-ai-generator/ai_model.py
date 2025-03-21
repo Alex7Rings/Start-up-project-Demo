@@ -1,11 +1,10 @@
 import openai
 
-API_KEY = "YOUR_OPENAI_API_KEY"  # Замени с твоя OpenAI API ключ
+openai_client = openai.OpenAI()  # Create OpenAI client
 
 def generate_question(topic):
-    """Генерира въпрос на база на дадена тема."""
-    response = openai.ChatCompletion.create(
-        model="gpt-4",
-        messages=[{"role": "user", "content": f"Генерирай въпрос за {topic}"}]
+    response = openai_client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": f"Generate a question about {topic}"}]
     )
-    return response["choices"][0]["message"]["content"]
+    return response.choices[0].message.content
