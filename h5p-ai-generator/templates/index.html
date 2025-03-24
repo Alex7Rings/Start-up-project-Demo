@@ -10,31 +10,21 @@
 </head>
 <body>
     <div class="container">
-        <h1>H5P AI Генератор</h1>
+        <h1 class="mb-4 text-center">🚀 AI H5P Question Generator</h1>
 
-        <!-- Форма за въвеждане на тема -->
-        <form method="POST">
-            <label for="topic">Въведи тема:</label>
-            <input type="text" id="topic" name="topic" required>
-            <button type="submit">🔍 Генерирай въпрос</button>
-        </form>
+        <form id="question-form">
+            <div class="mb-3">
+                <label for="topic" class="form-label">Topic</label>
+                <input type="text" class="form-control" id="topic" required>
+            </div>
 
-        <!-- Показване на AI въпроса -->
-        {% if question %}
-        <form action="/generate" method="POST">
-            <h2>📌 Генериран въпрос:</h2>
-            <p>{{ question }}</p>
-            <input type="hidden" name="question" value="{{ question }}">
-
-            <label for="correct_answer">✅ Правилен отговор:</label>
-            <input type="text" id="correct_answer" name="correct_answer" required>
-
-            <label for="wrong_answers">❌ Грешни отговори (разделени със запетая):</label>
-            <input type="text" id="wrong_answers" name="wrong_answers" required>
-
-            <button type="submit">📥 Генерирай H5P JSON</button>
-        </form>
-        {% endif %}
-    </div>
+            <div class="mb-3">
+                <label for="difficulty" class="form-label">Difficulty</label>
+                <select class="form-select" id="difficulty" required>
+                    <option value="Easy">Easy</option>
+                    <option value="Medium">Medium</option>
+                    <option value="Hard">Hard</option>
+                </select>
+            </div>
 </body>
 </html>
