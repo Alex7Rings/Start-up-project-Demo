@@ -26,5 +26,28 @@
                     <option value="Hard">Hard</option>
                 </select>
             </div>
+            <div class="mb-3">
+                <label for="question-type" class="form-label">Question Type</label>
+                <select class="form-select" id="question-type" required>
+                    <option value="Multiple Choice">Multiple Choice</option>
+                    <option value="True/False">True/False</option>
+                    <option value="Short Answer">Short Answer</option>
+                </select>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Generate Question</button>
+        </form>
+
+        <div class="mt-4">
+            <h3>Generated Question:</h3>
+            <p id="output" class="border p-3 bg-white"></p>
+            <button id="copy-btn" class="btn btn-secondary">Copy to Clipboard</button>
+        </div>
+
+        <div class="spinner-border text-primary mt-3" role="status" id="spinner">
+            <span class="visually-hidden">Loading...</span>
+        </div>
+    </div>
+
 </body>
 </html>
