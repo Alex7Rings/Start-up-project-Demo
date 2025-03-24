@@ -1,27 +1,54 @@
-from flask import Flask, render_template, request, send_file
+from flask import Flask, render_template, request, jsonify
+import json
 from ai_model import generate_question
-from h5p_generator import generate_h5p_json
+import os
 
 app = Flask(__name__)
 
-@app.route("/", methods=["GET", "POST"])
+# Create a folder to save generated questions
+if not os.path.exists('generated_questions'):
+    os.makedirs('generated_questions')
+
+
+@app.route('/')
 def index():
-    question = ""
-    if request.method == "POST":
-        topic = request.form["topic"]
-        question = generate_question(topic)
+    return render_template('index.html')
 
-    return render_template("index.html", question=question)
 
-@app.route("/generate", methods=["POST"])
+@app.route('/generate', methods=['POST'])
 def generate():
-    question = request.form["question"]
-    correct_answer = request.form["correct_answer"]
-    wrong_answers = request.form["wrong_answers"].split(",")
+    data = request.get_json()
+    topic = data['topic']
+    difficulty = data['difficulty']
+    q_type = data['question_type']
+    
+    # Generate question
+    question = generate_question(topic, difficulty, q_type)
+    
+    # Save the question
+    save_question(topic, difficulty, q_type, question)
+    
+    return jsonify({"question": question})
 
-    file_path = generate_h5p_json(question, correct_answer, wrong_answers)
 
-    return send_file(file_path, as_attachment=True)
+def save_question(topic, difficulty, q_type, question):
+    file_path = f'generated_questions/{topic}_questions.json'
+    if os.path.exists(file_path):
+        with open(file_path, 'r') as file:
+            data = json.load(file)
+    else:
+        data = []
+    
+    data.append({
+        "topic": topic,
+        "difficulty": difficulty,
+        "type": q_type,
+        "question": question
+    })
+    
+    with open(file_path, 'w') as file:
+        json.dump(data, file, indent=4)
 
-if __name__ == "__main__":
+
+if __name__ == '__main__':
     app.run(debug=True)
