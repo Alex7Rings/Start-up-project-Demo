@@ -55,6 +55,30 @@
         const spinner = document.getElementById('spinner');
         const copyBtn = document.getElementById('copy-btn');
 
+        form.addEventListener('submit', function(e) {
+            e.preventDefault();
+            spinner.style.display = 'block';
+            output.textContent = '';
+
+            const topic = document.getElementById('topic').value;
+            const difficulty = document.getElementById('difficulty').value;
+            const questionType = document.getElementById('question-type').value;
+
+            fetch('/generate', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ topic, difficulty, question_type: questionType })
+            })
+            .then(response => response.json())
+            .then(data => {
+                output.textContent = data.question;
+                spinner.style.display = 'none';
+            })
+            .catch(err => {
+                output.textContent = 'Error generating question.';
+                spinner.style.display = 'none';
+            });
+        });
     </script>
 </body>
 </html>
