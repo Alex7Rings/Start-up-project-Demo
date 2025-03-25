@@ -79,6 +79,11 @@
                 spinner.style.display = 'none';
             });
         });
+
+        copyBtn.addEventListener('click', () => {
+            navigator.clipboard.writeText(output.textContent);
+            alert('Copied to clipboard!');
+        });
     </script>
 </body>
 </html>
