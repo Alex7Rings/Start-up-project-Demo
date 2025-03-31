@@ -1,15 +1,13 @@
 import openai
-import os
 
-# Set your OpenAI API Key securely
-openai.api_key = os.getenv("OPENAI_API_KEY")
+openai_client = openai.OpenAI()  # Create OpenAI client
 
-def generate_question(topic, difficulty, q_type):
-    prompt = f"""
-    Generate a {difficulty} {q_type} question about {topic}.
-    """
-    response = openai.ChatCompletion.create(
+def generate_question(topic, difficulty="Medium", q_type="Multiple Choice"):
+    prompt = f"Generate a {difficulty} {q_type} question about {topic}."
+    
+    response = openai_client.chat.completions.create(
         model="gpt-3.5-turbo",
         messages=[{"role": "user", "content": prompt}]
     )
+
     return response.choices[0].message.content
