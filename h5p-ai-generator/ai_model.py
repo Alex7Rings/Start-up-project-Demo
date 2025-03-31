@@ -1,6 +1,11 @@
 import openai
+import os
 
-openai_client = openai.OpenAI()  # Create OpenAI client
+# Get API key from environment variable OR set it directly
+api_key = os.getenv("OPENAI_API_KEY", "your-api-key-here")
+
+# Create OpenAI client with API key
+openai_client = openai.OpenAI(api_key=api_key)
 
 def generate_question(topic, difficulty="Medium", q_type="Multiple Choice"):
     prompt = f"Generate a {difficulty} {q_type} question about {topic}."
